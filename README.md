@@ -47,6 +47,7 @@ kubectl apply -f kubernetes/cs16-deployment.yml
 # Attributions
 
 -based on [counter-strike-docker](https://github.com/JimTouz/counter-strike-docker), developed by [JimTouz](https://github.com/JimTouz/counter-strike-docker).
+
 -based on https://github.com/artem-panchenko/counter-strike-docker
 
 ## Changes from original project
