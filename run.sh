@@ -35,9 +35,9 @@ fi
 
 sleep 2
 
-if [[ $(docker ps | grep -o "cs16") == "cs16" ]]
+if [[ $(docker ps | awk '{print $NF}' | grep -o 'cs16') == 'cs16' ]]
 then
 echo "cs16 server is running...connect to LOCALIP:27015"
 else
-echo "OOPS!!!...cs16 server failed..."
+echo "OOPS...cs16 server failed..."
 fi
