@@ -4,6 +4,7 @@ then
 apt install -y docker git
 
 git clone https://github.com/koolwithk/cs16.git
+cd cs16
 tar -xzf cs16.tar.gz
 mv cs16 /opt/cs16
 rm -rf cs16.tar.gz
@@ -17,6 +18,7 @@ then
 yum install -y docker git
 
 git clone https://github.com/koolwithk/cs16.git
+cd cs16
 tar -xzf cs16.tar.gz
 mv cs16 /opt/cs16
 rm -rf cs16.tar.gz
