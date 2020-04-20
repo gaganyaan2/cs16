@@ -1,10 +1,15 @@
+if [[ -d /opt/cs16 ]]
+then
+echo "cs16 is already installed on path /opt/cs16"
+exit
+fi
+
 if [[ $(cat /etc/os-release | egrep "debian|ubuntu") != "" ]]
 then
 #install dependency 
 apt install -y docker git
 
-git clone https://github.com/koolwithk/cs16.git
-cd cs16
+wget https://github.com/koolwithk/cs16/raw/master/cs16.tar.gz
 tar -xzf cs16.tar.gz
 mv cs16 /opt/cs16
 rm -rf cs16.tar.gz
@@ -17,8 +22,7 @@ then
 #install dependency
 yum install -y docker git
 
-git clone https://github.com/koolwithk/cs16.git
-cd cs16
+wget https://github.com/koolwithk/cs16/raw/master/cs16.tar.gz
 tar -xzf cs16.tar.gz
 mv cs16 /opt/cs16
 rm -rf cs16.tar.gz
@@ -28,6 +32,8 @@ systemctl enable docker
 
 docker run -d -p 27015:27015/udp -v /opt/cs16:/opt/cs16:Z --name cs16 koolwithk/cs16:latest
 fi
+
+sleep 2
 
 if [[ $(docker ps | grep -o "cs16") == "cs16" ]]
 then
