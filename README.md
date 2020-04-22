@@ -11,7 +11,7 @@ bash run.sh
 
 ## Start the server with persistent volume /opt/cs16
 ```bash
-git clone https://github.com/koolwithk/cs16.git && tar -xzf cs16.tar.gz && mv cs16 /opt/cs16 && rm -rf cs16.tar.gz
+wget https://github.com/koolwithk/cs16/raw/master/cs16.tar.gz && tar -xzf cs16.tar.gz && mv cs16 /opt/cs16 && rm -rf cs16.tar.gz
 
 docker run -d -p 27015:27015/udp -v /opt/cs16:/opt/cs16:Z --name cs16 koolwithk/cs16:latest
 ```
