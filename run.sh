@@ -9,31 +9,27 @@ then
 #install dependency 
 apt install -y docker git
 
-wget https://github.com/koolwithk/cs16/raw/master/cs16.tar.gz
-tar -xzf cs16.tar.gz
-mv cs16 /opt/cs16
-rm -rf cs16.tar.gz
-
+docker run -d -p 27015:27015/udp --name cs16 koolwithk/cs16:latest
+docker cp -a cs16:/opt/cs16 /opt
+docker rm -f cs16
 docker run -d -p 27015:27015/udp -v /opt/cs16:/opt/cs16:Z --name cs16 koolwithk/cs16:latest
+
 fi
 
 if [[ $(cat /etc/os-release | egrep  "centos|rhel|fedora") != "" ]]
 then
 #install dependency
-yum install -y docker git
-
-wget https://github.com/koolwithk/cs16/raw/master/cs16.tar.gz
-tar -xzf cs16.tar.gz
-mv cs16 /opt/cs16
-rm -rf cs16.tar.gz
+yum install -y docker
 
 systemctl start docker
 systemctl enable docker
 
+docker run -d -p 27015:27015/udp --name cs16 koolwithk/cs16:latest
+docker cp -a cs16:/opt/cs16 /opt
+docker rm -f cs16
 docker run -d -p 27015:27015/udp -v /opt/cs16:/opt/cs16:Z --name cs16 koolwithk/cs16:latest
-fi
 
-sleep 2
+fi
 
 if [[ $(docker ps | awk '{print $NF}' | grep -o 'cs16') == 'cs16' ]]
 then
