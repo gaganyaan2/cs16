@@ -6,17 +6,24 @@ and yes it doesn't follow the actual docker concept of having everything inside 
 ## Start the server with run.sh and persistent volume /opt/cs16
 
 ```bash
-bash run.sh
+curl https://raw.githubusercontent.com/koolwithk/cs16/master/run.sh | bash
 ```
 
-## Start the server with persistent volume /opt/cs16
-```bash
-wget https://github.com/koolwithk/cs16/raw/master/cs16.tar.gz && tar -xzf cs16.tar.gz && mv cs16 /opt/cs16 && rm -rf cs16.tar.gz
+## To make changes into cs16 server need to edit conf inside /opt/cs16 and restart the cs16 docker
 
+```bash
+docker restart cs16
+```
+
+## Start the server with persistent volume /opt/cs16 (one time only)
+```bash
+docker run -d -p 27015:27015/udp --name cs16 koolwithk/cs16:latest
+docker cp -a cs16:/opt/cs16 /opt
+docker rm -f cs16
 docker run -d -p 27015:27015/udp -v /opt/cs16:/opt/cs16:Z --name cs16 koolwithk/cs16:latest
 ```
 
-## Stop the server
+## Stop the cs16 server
 
 ```bash
 docker stop cs16
@@ -31,7 +38,7 @@ docker start cs16
 ## Remove the server
 
 ```bash
-docker rm cs16
+docker rm -f cs16
 ```
 
 ## Run cs16 on kubernetes with nfs persistent volume
