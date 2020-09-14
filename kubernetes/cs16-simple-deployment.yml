@@ -1,0 +1,51 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cs16-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cs16
+  template:
+    metadata:
+      name: cs16-deployment
+      labels:
+        app: cs16
+        env: prod
+    spec:
+      containers:
+      - name: cs16
+        image: koolwithk/cs16:latest
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "500m"
+          limits:
+            memory: "1024Mi"
+            cpu: "1000m"
+        ports:
+        - name: cs-port1
+          containerPort: 27015
+          protocol: UDP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cs16-service
+  labels:
+    app: cs16
+    env: prod
+spec:
+  selector:
+    app: cs16
+  type: NodePort
+  ports:
+  - name: cs-port1
+    port: 27015
+    targetPort: 27015
+    nodePort: 30215
+    protocol: UDP
+
