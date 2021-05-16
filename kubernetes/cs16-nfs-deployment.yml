@@ -36,7 +36,7 @@ spec:
       volumes:
         - name: cs16-nfs
           nfs:
-            server: 192.168.0.184
+            server: 192.168.0.182
             path: "/opt/nfs1/cs16"
 ---
 apiVersion: v1
