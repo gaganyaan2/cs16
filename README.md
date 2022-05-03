@@ -1,5 +1,4 @@
 ### Motivation : Highly configurable cs16 docker image with persistent volume. 
-and yes it doesn't follow the actual docker concept of having everything inside the container.
 
 # Docker image for Counter Strike 1.6 Server
 
@@ -7,12 +6,6 @@ and yes it doesn't follow the actual docker concept of having everything inside 
 
 ```bash
 curl https://raw.githubusercontent.com/koolwithk/cs16/master/run.sh | bash
-```
-
-## To make changes into cs16 server need to edit conf inside /opt/cs16 and restart the cs16 docker
-
-```bash
-docker restart cs16
 ```
 
 ## Start the server with persistent volume /opt/cs16 (one time only)
@@ -23,21 +16,16 @@ docker rm -f cs16
 docker run -d -p 27015:27015/udp -v /opt/cs16:/opt/cs16:Z --name cs16 koolwithk/cs16:latest
 ```
 
-## Stop the cs16 server
+## Stop/start/remove the cs16 server
 
 ```bash
+# stop
 docker stop cs16
-```
 
 ## Start existing (stopped) server
-
-```bash
 docker start cs16
-```
 
 ## Remove the server
-
-```bash
 docker rm -f cs16
 ```
 
