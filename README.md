@@ -5,15 +5,15 @@
 ## Start the server with run.sh and persistent volume /opt/cs16
 
 ```bash
-curl https://raw.githubusercontent.com/koolwithk/cs16/master/run.sh | bash
+curl https://raw.githubusercontent.com/gaganyaan2/cs16/master/run.sh | bash
 ```
 
 ## Start the server with persistent volume /opt/cs16 (one time only)
 ```bash
-docker run -d -p 27015:27015/udp --name cs16 koolwithk/cs16:latest
+docker run -d -p 27015:27015/udp --name cs16 "$username"/cs16:latest
 docker cp -a cs16:/opt/cs16 /opt
 docker rm -f cs16
-docker run -d -p 27015:27015/udp -v /opt/cs16:/opt/cs16:Z --name cs16 koolwithk/cs16:latest
+docker run -d -p 27015:27015/udp -v /opt/cs16:/opt/cs16:Z --name cs16 "$username"/cs16:latest
 ```
 
 ## Stop/start/remove the cs16 server
